@@ -1,5 +1,5 @@
 const subLink = 'https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub1.txt';
-//const subLink = 'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/splitted/vmess.txt';
+//const subLink = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt';
 
 export default {
   async fetch(request) {
@@ -14,8 +14,12 @@ export default {
       subConfigs = subConfigs.split('\n');
       for (let subConfig of subConfigs) {
         try{
-        if (subConfig.search('vmess') != -1) {
+          if (subConfig.startsWith('vmess')) {
           subConfig = subConfig.replace('vmess://', '');
+          
+          if(subConfig.endsWith("`"))
+            subConfig=subConfig.substring(0, subConfig.length-1);
+
           subConfig = atob(subConfig);
           subConfig = JSON.parse(subConfig);
           let uid=subConfig.id+subConfig.sni;
@@ -45,7 +49,9 @@ export default {
             id_repeat=id_repeat+uid+ ' *** ';
           }
         }
-        }catch{}
+      } catch (error) {
+       
+     }
       }
       return new Response(newConfigs);
     } else {
