@@ -1,5 +1,5 @@
-const subLink = 'https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub1.txt';
-//const subLink = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt';
+//const subLink = 'https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub1.txt';
+const subLink = 'https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt';
 
 export default {
   async fetch(request) {
